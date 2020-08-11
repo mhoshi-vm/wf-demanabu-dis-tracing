@@ -4,7 +4,7 @@ metadata:
   name: hellorest
   namespace: demo7
 data:
-  spring.sleuth.enabled: "false"
+  spring.sleuth.enabled: "true"
 ---
 kind: ConfigMap
 apiVersion: v1
@@ -12,7 +12,7 @@ metadata:
   name: hellored
   namespace: demo7
 data:
-  spring.sleuth.enabled: "false"
+  spring.sleuth.enabled: "true"
 ---
 kind: ConfigMap
 apiVersion: v1
@@ -20,5 +20,5 @@ metadata:
   name: hub
   namespace: demo7
 data:
-  spring.sleuth.enabled: "false"
+  spring.sleuth.enabled: "true"
   hub.urls: "http://service1/hello,http://service2/hello,http://service4"
