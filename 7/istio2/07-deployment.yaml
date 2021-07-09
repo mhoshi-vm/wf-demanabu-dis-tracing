@@ -1,0 +1,59 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    run: hellored
+  name: hellored
+  namespace: petclinic
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: hellored
+  template:
+    metadata:
+      labels:
+        run: hellored
+    spec:
+      serviceAccountName: spring-service-account
+      containers:
+      - image: mhoshivm/spring-hellored
+        imagePullPolicy: Always
+        name: hellored
+        ports:
+        - containerPort: 8082
+        env:
+        - name: WAVEFRONT_FREEMIUM-ACCOUNT
+          value: "false"
+        - name: MANAGEMENT_METRICS_EXPORT_WAVEFRONT_ENABLED
+          value: "false"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    run: hub
+  name: hub
+  namespace: petclinic
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: hub
+  template:
+    metadata:
+      labels:
+        run: hub
+    spec:
+      serviceAccountName: spring-service-account
+      containers:
+      - image: mhoshivm/spring-hub
+        imagePullPolicy: Always
+        name: hub
+        ports:
+        - containerPort: 8083
+        env:
+        - name: WAVEFRONT_FREEMIUM-ACCOUNT
+          value: "false"
+        - name: MANAGEMENT_METRICS_EXPORT_WAVEFRONT_ENABLED
+          value: "false"

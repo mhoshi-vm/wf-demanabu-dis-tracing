@@ -1,0 +1,77 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    run: helloworld
+  name: helloworld
+  namespace: petclinic
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: helloworld
+  template:
+    metadata:
+      labels:
+        run: helloworld
+    spec:
+      serviceAccountName: spring-service-account
+      containers:
+      - image: mhoshivm/spring-helloworld
+        imagePullPolicy: Always
+        name: helloworld
+        ports:
+        - containerPort: 8081
+        env:
+        - name: WAVEFRONT_FREEMIUM-ACCOUNT
+          value: "false"
+        - name: MANAGEMENT_METRICS_EXPORT_WAVEFRONT_ENABLED
+          value: "false"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    run: hello-python
+  name: hello-python
+  namespace: petclinic
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: hello-python
+  template:
+    metadata:
+      labels:
+        run: hello-python
+    spec:
+      serviceAccountName: spring-service-account
+      containers:
+      - image: mhoshivm/hello-python
+        imagePullPolicy: Always
+        name: hello-python
+        ports:
+        - containerPort: 5000
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    run: alpine
+  name: bash
+  namespace: petclinic
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: alpine
+  template:
+    metadata:
+      labels:
+        run: alpine
+    spec:
+      containers:
+      - image: alpine
+        imagePullPolicy: Always
+        name: bash
+        command: [ "sleep", "infinity" ]

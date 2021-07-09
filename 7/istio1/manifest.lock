@@ -1,0 +1,19 @@
+apiVersion: kbld.k14s.io/v1alpha1
+kind: Config
+minimumRequiredVersion: 0.29.0
+overrides:
+- image: alpine
+  newImage: index.docker.io/library/alpine@sha256:234cb88d3020898631af0ccbbcca9a66ae7306ecd30c9720690858c1b007d2a0
+  preresolved: true
+- image: mhoshivm/hello-python
+  newImage: index.docker.io/mhoshivm/hello-python@sha256:9f1cbf1efcbec73558d098e84c8bf36ba1a2ac6d6d482c383c5f246ef13294f0
+  preresolved: true
+- image: mhoshivm/spring-hellored
+  newImage: index.docker.io/mhoshivm/spring-hellored@sha256:14adf2646637f34bfadaa51c62835cf44aa7eab638e0dc5198b0e65eb039615f
+  preresolved: true
+- image: mhoshivm/spring-helloworld
+  newImage: index.docker.io/mhoshivm/spring-helloworld@sha256:751aec3263b0f32d962a83fb91bc90ceaca8f55c1b2c958927605f00930783d1
+  preresolved: true
+- image: mhoshivm/spring-hub
+  newImage: index.docker.io/mhoshivm/spring-hub@sha256:907f6aad1d29d300b6ceb88e796e0906c2d090ee038c627348bdc5c6343bb9de
+  preresolved: true

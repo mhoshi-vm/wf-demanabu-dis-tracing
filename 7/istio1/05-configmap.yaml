@@ -1,0 +1,24 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: hellorest
+  namespace: petclinic
+data:
+  spring.sleuth.enabled: "false"
+---
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: hellored
+  namespace: petclinic
+data:
+  spring.sleuth.enabled: "false"
+---
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: hub
+  namespace: petclinic
+data:
+  spring.sleuth.enabled: "false"
+  hub.urls: "http://service1.tsm.hoshino/hello,http://service2.tsm.hoshino/hello,http://service4.tsm.hoshino"

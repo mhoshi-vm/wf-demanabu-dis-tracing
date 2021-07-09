@@ -1,0 +1,33 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    run: service2
+  name: service2
+  namespace: petclinic
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8082
+    name: http-service2
+  selector:
+    run: hellored
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    run: service3
+  name: service3
+  namespace: petclinic
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8083
+    name: http-service3
+  selector:
+    run: hub
+  type: ClusterIP
